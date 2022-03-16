@@ -1,1 +1,4 @@
 # JasmineCheck
+
+
+Intro + exercices
