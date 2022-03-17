@@ -192,12 +192,13 @@ let getElementsUntilGreaterThanFive = (array) => {
 }
 
 let convertArrayToObject = (array) => {
-    // let newArr = array.map((a) => {
-    //     return{
-    //         a
-    //     }
-    // });
-    // return newArr;
+    let obj = {};
+
+    for(let i = 0; i < array.length; i+=2){
+        obj[array[i]] = array[i+1];
+    }
+
+    return obj;
 }
 
 let getAllLetters = (array) => {
@@ -229,8 +230,8 @@ let sumKeysAndValues = (object) => {
 }
 
 let removeCapitals = (string) => {
-
-    // return string;
+    let n_string = string.replace(/[A-Z]+/g, "");
+    return n_string;
 }
 
 let roundUp = (number) => {
@@ -255,33 +256,86 @@ let formatDateNicely = (date) => {
 }
 
 let getDomainName = (string) => {
-    return 'Write your method here';
+    let split1 = string.split('@');
+    let a = split1[1].toString();
+    let split2 = a.split('.com');
+    let b = split2[0].toString();
+    return b;
 }
 
 let titleize = (string) => {
-    return 'Write your method here';
+    // function toTitleCase(str) {
+    //     return str.replace(
+    //       /\w\S*/g,
+    //       function(txt) {
+    //         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    //       }
+    //     );
+    //   }
+    // return toTitleCase(string);
 }
 
 let checkForSpecialCharacters = (string) => {
-    return 'Write your method here';
+    var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+
+    if(string.match(format)){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 let squareRoot = (number) => {
-    return 'Write your method here';
+    return Math.sqrt(number);
 }
 
 let factorial = (number) => {
-    return 'Write your method here';
+    let asw = 1;
+    for(let i = 1; i < number + 1; i++){
+        asw *= i;
+    }
+    return asw;
 }
 
 let findAnagrams = (string) => {
-    return 'Write your method here';
+    // let arr = string.split('');
+
+    // let arr1 = [];
+    // for(let i = 0; i < arr.length; i++){
+    //     let arr2 = [];
+    //     for(let j = 0; j < arr.length; j++){
+    //         arr2.push(arr[j]);
+    //     }
+    //     arr1.push(arr2);
+    // }
+
+    // return arr;
 }
 
 let convertToCelsius = (number) => {
-    return 'Write your method here';
+    let celsius = Math.round(((number - 32) * (5 / 9)));
+    return celsius;
 }
 
 let letterPosition = (array) => {
-    return 'Write your method here';
+    let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+    let counter;
+    let arr = [];
+    
+    array.forEach(elem1 => {
+        counter = 0;
+        alphabet.forEach(elem2 => {
+            counter++;
+
+            if(counter > 26){
+                counter =1
+            }
+
+            if(elem1 === elem2){
+                arr.push(counter);
+            }
+        });
+    });
+    
+    return arr;
 }
