@@ -1,11 +1,9 @@
 let CreationTableauLangages =  () => {
-    let arr = ["Html","CSS","Java","PHP"];
-    return arr;
+    return ["Html","CSS","Java","PHP"];
 }
 
 let CreationTableauNombres =  () => {
-    let arr = [0, 1, 2, 3, 4, 5];
-    return arr;
+    return [0, 1, 2, 3, 4, 5];
 }
 
 let RemplacementElement =  (langages) => {
@@ -35,13 +33,11 @@ let SuppressionDernierElement =  (langages) => {
 }
 
 let ConversionChaineTableau =  (reseaux_sociaux_chaine) => {
-    let arr = reseaux_sociaux_chaine.split(',');
-    return arr;
+    return reseaux_sociaux_chaine.split(',');
 }
 
 let ConversionTableauChaine =  (langages) => {
-    let string = langages.join();
-    return string;
+    return langages.join();
 }
 
 let TriTableau =  (reseaux_sociaux) => {

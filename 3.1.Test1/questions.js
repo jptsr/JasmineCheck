@@ -37,8 +37,7 @@ let IsString =  (texte) => {
     }
 }
 let AfficherExtensionString =  (texte) => {
-    let extension = texte.split('.').pop();     // split at the '.', push evreything in array and return the last word
-    return extension;
+    return texte.split('.').pop();
 }
 let NombreEspaceString =  (texte) => {
     let split = texte.split(' ');
@@ -46,8 +45,7 @@ let NombreEspaceString =  (texte) => {
     return nb_space;
 }
 let InverseString =  (texte) => {
-    let new_txt = texte.split('').reverse().join('');
-    return new_txt;
+    return texte.split('').reverse().join('');
 }
 
 /**
@@ -68,14 +66,11 @@ let valeurAbsolueArray =  (array) => {
     return arr;
 }
 let sufaceCercle =  (rayon) => {
-    let surface = Math.round(Math.PI * Math.pow(rayon, 2));
-    return surface;
+    return Math.round(Math.PI * Math.pow(rayon, 2));
 }
 let hypothenuse =  (ab, ac) => {
     return Math.sqrt(Math.pow(ab, 2) + Math.pow(ac, 2));
 }
 let calculIMC =  (poids, taille) => {
-    let imc = poids / Math.pow(taille, 2);
-    let result = imc.toFixed(2);
-    return parseFloat(result);
+    return parseFloat((poids / Math.pow(taille, 2)).toFixed(2));
 }
