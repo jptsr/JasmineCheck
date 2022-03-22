@@ -36,7 +36,6 @@ let everyPossiblePair = (array) => {
             if(array[i] === array[j]){
                 console.log('same name');
             }else{
-                // console.log(array[j]);
                 arr2.push(array[j]);
             }
             arr2.sort();
@@ -93,10 +92,8 @@ let makeNegative = (number) => {
 let numberOfPalindromes = (array) => {
     let counter = 0;
     array.forEach(element => {
-        // console.log(element);
         let a = element.split('').reverse().join('');
         if(a === element){
-            // console.log('palyndrome');
             counter++;
         }
     });
@@ -104,47 +101,47 @@ let numberOfPalindromes = (array) => {
 }
 
 let shortestWord = (array) => {
-    let arr = [];
-    array.forEach(element => {
-        let length = element.length;
-        arr.push(length);
-    });
+    // let arr = [];
+    // array.forEach(element => {
+    //     let length = element.length;
+    //     arr.push(length);
+    // });
 
-    arr.sort();
-    let nb = arr[0];
+    // arr.sort();
+    // let nb = arr[0];
 
-    let final_arr = [];
-    array.forEach(element => {
-        if(element.length === nb){
-            final_arr.push(element);
-        }
-    });
+    // let final_arr = [];
+    // array.forEach(element => {
+    //     if(element.length === nb){
+    //         final_arr.push(element);
+    //     }
+    // });
 
-    let word = final_arr.join();
+    // let word = final_arr.join();
 
-    return word;
+    return array.reduce((prev_word, current_word) => (prev_word.length <= current_word.length) ? prev_word : current_word);
 }
 
 let longestWord = (array) => {
-    let arr = [];
-    array.forEach(element => {
-        let length = element.length;
-        arr.push(length);
-    });
+    // let arr = [];
+    // array.forEach(element => {
+    //     let length = element.length;
+    //     arr.push(length);
+    // });
 
-    arr.sort();
-    let nb = arr[arr.length - 1];
+    // arr.sort();
+    // let nb = arr[arr.length - 1];
 
-    let final_arr = [];
-    array.forEach(element => {
-        if(element.length === nb){
-            final_arr.push(element);
-        }
-    });
+    // let final_arr = [];
+    // array.forEach(element => {
+    //     if(element.length === nb){
+    //         final_arr.push(element);
+    //     }
+    // });
 
-    let word = final_arr.join();
+    // let word = final_arr.join();
 
-    return word;
+    return array.reduce((prev_word, current_word) => (prev_word.length >= current_word.length) ? prev_word : current_word);
 }
 
 let sumNumbers = (array) => {
@@ -157,38 +154,24 @@ let sumNumbers = (array) => {
 }
 
 let repeatElements = (array) => {
-    let string = array.join();
-    for(let i = 0; i < 1; i++){
-        string += ("," + string);
-    }
-    let phrase = string.split(',');
-    return phrase;
+    // let string = array.join();
+    // for(let i = 0; i < 1; i++){
+    //     string += ("," + string);
+    // }
+    // let phrase = string.split(',');
+    return array.concat(array);
 }
 
 let stringToNumber = (string) => {
-    let nb = parseFloat(string);
-    return nb;
+    return parseFloat(string);
 }
 
-let calculateAverage = (array) => {
-    let sum = 0;
-    array.forEach(element => {
-        sum += element;
-    });
-    let average = sum / array.length;
-    return average;
+let calculateAverage = (array) => {    
+    return array.reduce((prev_val, current_val, index, arr) => (prev_val + current_val/arr.length), 0);
 }
 
 let getElementsUntilGreaterThanFive = (array) => {
-    let arr = [], counter = 0;
-
-    array.forEach(element => {
-        counter++;
-        if(counter <= 6){
-            arr.push(element);
-        }
-    });
-    return arr;
+    return array.slice(0, 6);
 }
 
 let convertArrayToObject = (array) => {
@@ -199,13 +182,12 @@ let convertArrayToObject = (array) => {
     }
 
     return obj;
+    // return array.reduce((pre, cur, index, arr) => ({...pre, [arr[index]] : cur}), {});
 }
 
 let getAllLetters = (array) => {
-    let join = array.join('');
-    let arr = join.split('');
-    arr.sort();
-    let final = [...new Set(arr)];
+    let join = array.join('').split('').sort();
+    let final = [...new Set(join)];
     return final;
 }
 
@@ -213,7 +195,6 @@ let swapKeysAndValues = (object) => {
     let nwObj = {};
 
     for(let key in object){
-        // console.log(key);
         nwObj[object[key]] = key;
     }
 
@@ -230,8 +211,7 @@ let sumKeysAndValues = (object) => {
 }
 
 let removeCapitals = (string) => {
-    let n_string = string.replace(/[A-Z]+/g, "");
-    return n_string;
+    return string.replace(/[A-Z]+/g, "");
 }
 
 let roundUp = (number) => {
@@ -264,15 +244,42 @@ let getDomainName = (string) => {
 }
 
 let titleize = (string) => {
-    // function toTitleCase(str) {
-    //     return str.replace(
-    //       /\w\S*/g,
-    //       function(txt) {
-    //         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    //       }
-    //     );
-    //   }
-    // return toTitleCase(string);
+    let final_arr = [];
+    let not = ['and', 'the'];
+    let splitPoint = string.split('.');
+    let firstPhrase = true;
+
+    splitPoint.forEach(el1 => {
+        console.log('phrase');
+        let arr = [];
+        if(firstPhrase){
+            el1 = el1.charAt(0).toUpperCase() + el1.substring(1).toLowerCase();
+            firstPhrase = false;
+        }else{
+            el1 = ' ' + el1.charAt(1).toUpperCase() + el1.substring(2).toLowerCase();
+        }
+
+        el1.split(' ').forEach(el2 => {
+            let same = false;
+
+            not.forEach(el3 => {
+                if(el3 === el2){
+                    same = true;
+                }
+            })
+
+            if(!same){
+                el2 = el2.charAt(0).toUpperCase() + el2.substring(1).toLowerCase();
+                arr.push(el2);
+            }else{
+                arr.push(el2);
+            }
+        })
+
+        final_arr.push(arr.join(' '));
+    })
+
+    return final_arr.join('.');
 }
 
 let checkForSpecialCharacters = (string) => {
@@ -298,23 +305,28 @@ let factorial = (number) => {
 }
 
 let findAnagrams = (string) => {
-    // let arr = string.split('');
+    let arr = string.split('');
 
-    // let arr1 = [];
-    // for(let i = 0; i < arr.length; i++){
-    //     let arr2 = [];
-    //     for(let j = 0; j < arr.length; j++){
-    //         arr2.push(arr[j]);
-    //     }
-    //     arr1.push(arr2);
-    // }
+    let arr1 = [];
+    for(let i = 0; i < arr.length; i++){
+        let arr2 = [];
+        // arr2.push(arr[i]);
+        for(let j = 0; j < arr.length; j++){
+            if(!(arr[i] === arr[j])){
+                arr2.push(arr[j]);
+            }
+        }
+        
+        arr1.push(arr2.join().replace(/[,]+/g, ""));
+    }
 
-    // return arr;
+    arr1.sort();
+
+    return arr1;
 }
 
 let convertToCelsius = (number) => {
-    let celsius = Math.round(((number - 32) * (5 / 9)));
-    return celsius;
+    return Math.round(((number - 32) * (5 / 9)));
 }
 
 let letterPosition = (array) => {
